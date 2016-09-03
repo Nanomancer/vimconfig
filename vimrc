@@ -5,10 +5,6 @@ nnoremap <leader>re kddjddk<Esc>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <leader>' i''<Esc>i
-" test 1
-" test 2
-" test 3
-
 
 " Vundle setup
 set nocompatible              " be iMproved, required
