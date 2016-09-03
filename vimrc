@@ -3,10 +3,10 @@ let mapleader = ","
 nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
 nnoremap <leader>re kddjddk<Esc>
 nnoremap <leader>rv :source $MYVIMRC<CR>
-
+nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>' i''<Esc>i
 " test 1
 " test 2
-
 " test 3
 
 
