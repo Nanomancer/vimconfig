@@ -1,8 +1,14 @@
 " remap leader
 let mapleader = ","
 nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
-"nnoremap <leader>re kddjd<Esc>
+nnoremap <leader>re kddjddk<Esc>
 nnoremap <leader>rv :source $MYVIMRC<CR>
+
+" test 1
+" test 2
+
+" test 3
+
 
 " Vundle setup
 set nocompatible              " be iMproved, required
