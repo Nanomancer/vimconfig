@@ -1,10 +1,19 @@
 " remap leader
 let mapleader = ","
-nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
+nnoremap <leader>er <Esc>O<Esc>jo<Esc>k " comment?
 nnoremap <leader>re kddjddk<Esc>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <leader>' i''<Esc>i
+nnoremap <leader>a :tabfirst<CR>
+nnoremap <leader>f :tablast<CR>
+nnoremap <leader>d :tabnext<CR>
+nnoremap <leader>s :tabprev<CR>
+nnoremap <leader>n :tabnew<space>
+
+" test 1
+" test 2
+" test 3
 
 " Vundle setup
 set nocompatible              " be iMproved, required
@@ -36,7 +45,8 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Plugin 'Lokaltog/vim-powerline'
+" Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -62,14 +72,24 @@ filetype plugin indent on    " required
 
 " vim setup
 " filetype plugin indent on
+
+" set tab spaces etc
+set tabstop=4
+set shiftwidth=4
+set linebreak
+set breakindent
+" set expandtab
+
 set wildmenu
 set number
 set wrap
+set hlsearch
 highlight LineNr ctermfg=DarkGrey
 set laststatus=2 "always show statusline
 set encoding=utf-8 " show unicode glyphs
 set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
-
+set list
+set listchars=tab:▸\ ,eol:¬
 syntax on
 filetype plugin on
 
@@ -107,6 +127,16 @@ map <Leader>t <plug>NERDTreeTabsToggle<CR>
 let g:NERDTreeWinPos = "right"
 " " move to the first buffer
 autocmd VimEnter * wincmd p
+
+" set syntax for markdown, this may not be necessary but seem to be having
+" probs.
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
+
+" quickly clear search highlight - hit <esc> after search
+nnoremap <esc> :noh<return><esc>
 
 
 " Disable stupid backup and swap files - they trigger too many events
