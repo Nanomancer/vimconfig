@@ -59,6 +59,33 @@ augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
+
+set wildmenu
+set number
+set wrap
+set hlsearch
+highlight LineNr ctermfg=DarkGrey
+set laststatus=2 "always show statusline
+set encoding=utf-8 " show unicode glyphs
+set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
+set list
+set listchars=tab:▸\ ,eol:¬
+syntax on
+filetype plugin on
+
+" quickly clear search highlight - hit <esc> after search
+nnoremap <esc> :noh<return><esc>
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
 " }}}
 
 " Leader remaps {{{
@@ -75,8 +102,9 @@ nnoremap <leader>f :tablast<CR>
 nnoremap <leader>d :tabnext<CR>
 nnoremap <leader>s :tabprev<CR>
 nnoremap <leader>n :tabnew<space>
+nnoremap <leader>o o<Esc>k
+nnoremap <leader>oo O<Esc>j
 " }}}
-
 
 " Remap arrow keys to nothing {{{
 no <down> <Nop>
@@ -95,8 +123,6 @@ vno <left> <Nop>
 vno <right> <Nop>
 " }}}
 
-" custom remappings
-
 " set tab spaces etc {{{
 set tabstop=4
 set shiftwidth=4
@@ -104,19 +130,6 @@ set linebreak
 set breakindent
 " set expandtab
 " }}}
-
-set wildmenu
-set number
-set wrap
-set hlsearch
-highlight LineNr ctermfg=DarkGrey
-set laststatus=2 "always show statusline
-set encoding=utf-8 " show unicode glyphs
-set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
-set list
-set listchars=tab:▸\ ,eol:¬
-syntax on
-filetype plugin on
 
 " Window navigation {{{
 map <c-j> <c-w>j
@@ -139,17 +152,9 @@ autocmd VimEnter * wincmd p
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " }}}
 
-" quickly clear search highlight - hit <esc> after search
-nnoremap <esc> :noh<return><esc>
-
-
-" Disable stupid backup and swap files - they trigger too many events
-" for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
-
-" Airline config
+" Plugin configuration: {{{
+" Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='laederon'
+" }}}
