@@ -1,21 +1,5 @@
-" remap leader
-let mapleader = ","
-nnoremap <leader>er <Esc>O<Esc>jo<Esc>k " comment?
-nnoremap <leader>re kddjddk<Esc>
-nnoremap <leader>rv :source $MYVIMRC<CR>
-nnoremap <leader>ev :tabnew $MYVIMRC<CR>
-nnoremap <leader>' i''<Esc>i
-nnoremap <leader>a :tabfirst<CR>
-nnoremap <leader>f :tablast<CR>
-nnoremap <leader>d :tabnext<CR>
-nnoremap <leader>s :tabprev<CR>
-nnoremap <leader>n :tabnew<space>
 
-" test 1
-" test 2
-" test 3
-
-" Vundle setup
+" Vundle setup {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -68,32 +52,33 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" }}}
+
+" vim setup {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Leader remaps {{{
+let mapleader = ","
+nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
+nnoremap <leader>re kddjddk<Esc>
+nnoremap <leader>rv :source $MYVIMRC<CR>
+nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>' i''<Esc>i
+nnoremap <leader>" i""<Esc>i
+nnoremap <leader>{ i{}<Esc>i
+nnoremap <leader>a :tabfirst<CR>
+nnoremap <leader>f :tablast<CR>
+nnoremap <leader>d :tabnext<CR>
+nnoremap <leader>s :tabprev<CR>
+nnoremap <leader>n :tabnew<space>
+" }}}
 
 
-" vim setup
-" filetype plugin indent on
-
-" set tab spaces etc
-set tabstop=4
-set shiftwidth=4
-set linebreak
-set breakindent
-" set expandtab
-
-set wildmenu
-set number
-set wrap
-set hlsearch
-highlight LineNr ctermfg=DarkGrey
-set laststatus=2 "always show statusline
-set encoding=utf-8 " show unicode glyphs
-set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
-set list
-set listchars=tab:▸\ ,eol:¬
-syntax on
-filetype plugin on
-
-" Remap arrow keys to nothing
+" Remap arrow keys to nothing {{{
 no <down> <Nop>
 no <left> <Nop>
 no <right> <Nop>
@@ -108,18 +93,39 @@ vno <up> <Nop>
 vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
+" }}}
 
 " custom remappings
 
-" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-" Every unnecessary keystroke that can be saved is good for your health :)
+" set tab spaces etc {{{
+set tabstop=4
+set shiftwidth=4
+set linebreak
+set breakindent
+" set expandtab
+" }}}
+
+set wildmenu
+set number
+set wrap
+set hlsearch
+highlight LineNr ctermfg=DarkGrey
+set laststatus=2 "always show statusline
+set encoding=utf-8 " show unicode glyphs
+set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
+set list
+set listchars=tab:▸\ ,eol:¬
+syntax on
+filetype plugin on
+
+" Window navigation {{{
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+" }}}
 
-
-" load up the nerd tree
+" load up the nerd tree {{{
 autocmd vimenter * NERDTree
 map <Leader>t <plug>NERDTreeTabsToggle<CR>
 
@@ -127,13 +133,11 @@ map <Leader>t <plug>NERDTreeTabsToggle<CR>
 let g:NERDTreeWinPos = "right"
 " " move to the first buffer
 autocmd VimEnter * wincmd p
+" }}}
 
-" set syntax for markdown, this may not be necessary but seem to be having
-" probs.
+" set syntax for markdown {{{
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
+" }}}
 
 " quickly clear search highlight - hit <esc> after search
 nnoremap <esc> :noh<return><esc>
