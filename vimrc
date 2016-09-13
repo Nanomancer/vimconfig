@@ -35,7 +35,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'vim-scripts/Txtfmt-The-Vim-Highlighter'
+"Plugin 'vim-scripts/Txtfmt-The-Vim-Highlighter'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+" untried comment plugin
+" Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 
@@ -68,6 +71,7 @@ set noswapfile
 
 set wildmenu
 set number
+set relativenumber
 set wrap
 set hlsearch
 highlight LineNr ctermfg=DarkGrey
@@ -81,11 +85,17 @@ filetype plugin on
 
 " quickly clear search highlight - hit <esc> after search
 nnoremap <esc> :noh<return><esc>
-" Disable stupid backup and swap files - they trigger too many events
-" for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
+" set spell
+set spelllang=en_gb
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellRare
+hi clear SpellLocal
+hi SpellBad cterm=underline
+hi SpellCap cterm=underline
+hi SpellRare cterm=underline
+hi SpellLocal cterm=underline
+autocmd BufRead,BufNewFile *.md set spell
 " }}}
 
 " Leader remaps {{{
@@ -104,6 +114,7 @@ nnoremap <leader>s :tabprev<CR>
 nnoremap <leader>n :tabnew<space>
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>oo O<Esc>j
+nnoremap <leader>c <C-_><C-_>
 " }}}
 
 " Remap arrow keys to nothing {{{
