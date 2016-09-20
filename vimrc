@@ -30,13 +30,13 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jistr/vim-nerdtree-tabs'
-"Plugin 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+
 " untried comment plugin
 " Plugin 'scrooloose/nerdcommenter'
 
@@ -58,13 +58,14 @@ filetype plugin indent on    " required
 " }}}
 
 " vim setup {{{
+
+" set folds as marker for vimrc
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" Disable stupid backup and swap files - they trigger too many events
-" for file system watchers
+" Disable stupid backup and swap files
 set nobackup
 set nowritebackup
 set noswapfile
@@ -85,7 +86,7 @@ filetype plugin on
 
 " quickly clear search highlight - hit <esc> after search
 nnoremap <esc> :noh<return><esc>
-" set spell
+" Spelling options - spellcheck only active for .md / markdown file format
 set spelllang=en_gb
 hi clear SpellBad
 hi clear SpellCap
@@ -100,21 +101,32 @@ autocmd BufRead,BufNewFile *.md set spell
 
 " Leader remaps {{{
 let mapleader = ","
+
+"create/remove extra lines above & below
 nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
 nnoremap <leader>re kddjddk<Esc>
-nnoremap <leader>rv :source $MYVIMRC<CR>
+
+" fast open / reload vimrc
 nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>rv :source $MYVIMRC<CR>
+
+" enter insert inside quotes/brackets
 nnoremap <leader>' i''<Esc>i
 nnoremap <leader>" i""<Esc>i
 nnoremap <leader>{ i{}<Esc>i
+nnoremap <leader>( i()<Esc>i
+nnoremap <leader>[ i[]<Esc>i
+
+" tab navigation
 nnoremap <leader>a :tabfirst<CR>
 nnoremap <leader>f :tablast<CR>
 nnoremap <leader>d :tabnext<CR>
 nnoremap <leader>s :tabprev<CR>
 nnoremap <leader>n :tabnew<space>
+
+" line below / above
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>oo O<Esc>j
-nnoremap <leader>c <C-_><C-_>
 " }}}
 
 " Remap arrow keys to nothing {{{
