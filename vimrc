@@ -65,6 +65,10 @@ augroup filetype_vim
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+" save foldmethod etc with file
+" au BufWinLeave * mkview
+" au BufWinEnter * silent loadview
+
 " Disable stupid backup and swap files
 set nobackup
 set nowritebackup
@@ -88,6 +92,7 @@ filetype plugin on
 nnoremap <esc> :noh<return><esc>
 " Spelling options - spellcheck only active for .md / markdown file format
 set spelllang=en_gb
+set spellfile=/home/james/A_Sync/vim/spell/en.utf-8.add
 hi clear SpellBad
 hi clear SpellCap
 hi clear SpellRare
@@ -97,6 +102,7 @@ hi SpellCap cterm=underline
 hi SpellRare cterm=underline
 hi SpellLocal cterm=underline
 autocmd BufRead,BufNewFile *.md set spell
+
 " }}}
 
 " Leader remaps {{{
@@ -117,6 +123,8 @@ nnoremap <leader>{ i{}<Esc>i
 nnoremap <leader>( i()<Esc>i
 nnoremap <leader>[ i[]<Esc>i
 
+" Insert date
+nnoremap <leader>c :read !date +"%a %d %b %Y"
 " tab navigation
 nnoremap <leader>a :tabfirst<CR>
 nnoremap <leader>f :tablast<CR>
