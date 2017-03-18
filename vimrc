@@ -36,6 +36,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'dermusikman/sonicpi.vim'
 
 " untried comment plugin
 " Plugin 'scrooloose/nerdcommenter'
@@ -124,7 +125,7 @@ nnoremap <leader>( i()<Esc>i
 nnoremap <leader>[ i[]<Esc>i
 
 " Insert date
-nnoremap <leader>c :read !date +"%a %d %b %Y"
+nnoremap <leader>c :read ! date
 " tab navigation
 nnoremap <leader>a :tabfirst<CR>
 nnoremap <leader>f :tablast<CR>
@@ -135,6 +136,9 @@ nnoremap <leader>n :tabnew<space>
 " line below / above
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>oo O<Esc>j
+
+" insert four spaces
+nnoremap <leader><space> i<space><space><space><space>
 " }}}
 
 " Remap arrow keys to nothing {{{
