@@ -104,6 +104,8 @@ hi SpellRare cterm=underline
 hi SpellLocal cterm=underline
 autocmd BufRead,BufNewFile *.md set spell
 
+" Allows buffers to be hidden if modified
+set hidden
 " }}}
 
 " Leader remaps {{{
@@ -126,12 +128,13 @@ nnoremap <leader>[ i[]<Esc>i
 
 " Insert date
 nnoremap <leader>c :read ! date
+
 " tab navigation
-nnoremap <leader>a :tabfirst<CR>
-nnoremap <leader>f :tablast<CR>
-nnoremap <leader>d :tabnext<CR>
-nnoremap <leader>s :tabprev<CR>
-nnoremap <leader>n :tabnew<space>
+nnoremap <leader>ta :tabfirst<CR>
+nnoremap <leader>tf :tablast<CR>
+nnoremap <leader>td :tabnext<CR>
+nnoremap <leader>ts :tabprev<CR>
+nnoremap <leader>tn :tabnew<space>
 
 " line below / above
 nnoremap <leader>o o<Esc>k
@@ -143,12 +146,14 @@ nnoremap <leader><space> i<space><space><space><space>
 " Mappings to access buffers (don't use "\p" because a
 " " delay before pressing "p" would accidentally paste).
 " " \l       : list buffers
-" " \b \f \g : go back/forward/last-used
+" " \s \d \g : go back/forward/last-used
 " " \1 \2 \3 : go to buffer 1/2/3 etc
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>s :bp<CR>
 nnoremap <Leader>d :bn<CR>
 nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>a :1b<CR>
+nnoremap <Leader>f :1b<CR>:bp<CR>
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>
@@ -159,6 +164,7 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+nnoremap <leader>bq :bp <BAR> bd #<CR>
 " It's useful to show the buffer number in the status line.
 " set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
@@ -198,7 +204,7 @@ map <c-h> <c-w>h
 
 " load up the nerd tree {{{
 autocmd vimenter * NERDTree
-map <Leader>t <plug>NERDTreeTabsToggle<CR>
+map <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
 " move nerdtree to the right
 let g:NERDTreeWinPos = "right"
@@ -213,6 +219,7 @@ autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " Plugin configuration: {{{
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='laederon'
 " }}}
