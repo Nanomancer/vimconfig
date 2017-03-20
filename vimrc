@@ -75,6 +75,11 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" colorscheme desert
+" colorscheme elflord
+" colorscheme nordisk
+colorscheme alduin
+
 set wildmenu
 set number
 set relativenumber
@@ -91,6 +96,7 @@ filetype plugin on
 
 " quickly clear search highlight - hit <esc> after search
 nnoremap <esc> :noh<return><esc>
+"
 " Spelling options - spellcheck only active for .md / markdown file format
 set spelllang=en_gb
 set spellfile=/home/james/A_Sync/vim/spell/en.utf-8.add
@@ -106,17 +112,26 @@ autocmd BufRead,BufNewFile *.md set spell
 
 " Allows buffers to be hidden if modified
 set hidden
+
+command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/Reference/**/*.md
+
+
 " }}}
 
 " Leader remaps {{{
 let mapleader = ","
+
+" Launch Ngrep ...
+nnoremap <leader>] :Ngrep 
 
 "create/remove extra lines above & below
 nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
 nnoremap <leader>re kddjddk<Esc>
 
 " fast open / reload vimrc
-nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+"nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+"nnoremap <leader>ev :enew $MYVIMRC<CR>
+nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " enter insert inside quotes/brackets
