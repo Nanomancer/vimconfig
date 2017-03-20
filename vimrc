@@ -113,7 +113,9 @@ autocmd BufRead,BufNewFile *.md set spell
 " Allows buffers to be hidden if modified
 set hidden
 
-command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/Reference/**/*.md
+" search through reference directory
+"command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/Reference/**/*.md
+command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
 
 
 " }}}
