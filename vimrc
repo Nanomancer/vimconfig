@@ -114,8 +114,8 @@ autocmd BufRead,BufNewFile *.md set spell
 set hidden
 
 " search through reference directory
-"command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/Reference/**/*.md
-command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
+command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/1_OU/Reference/**/*.md
+"command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
 
 
 " }}}
