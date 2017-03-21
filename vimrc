@@ -37,6 +37,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'dermusikman/sonicpi.vim'
+Plugin 'ervandew/supertab'
 
 " untried comment plugin
 " Plugin 'scrooloose/nerdcommenter'
@@ -121,6 +122,7 @@ hi SpellCap cterm=underline
 hi SpellRare cterm=underline
 hi SpellLocal cterm=underline
 autocmd BufRead,BufNewFile *.md set spell
+set omnifunc=syntaxcomplete#Complete
 
 " Ngrep {{{2
 
@@ -144,6 +146,7 @@ nnoremap <leader>re kddjddk<Esc>
 " fast open / reload vimrc {{{2
 "
 nnoremap <leader>ev :edit $MYVIMRC<CR>
+nnoremap <leader>eb :edit /home/james/.bashrc<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " enter insert inside quotes/brackets {{{2
@@ -232,7 +235,7 @@ autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='laederon'
-let g:airline_theme='alduin'
+let g:airline_theme='laederon'
+"let g:airline_theme='alduin'
 " 
 " }}}
