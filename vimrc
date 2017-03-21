@@ -227,11 +227,12 @@ autocmd VimEnter * wincmd p
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " 
 
-" Plugin configuration: {{{1
-" Airline
+" Airline configuration: {{{1
+" 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='laederon'
+"let g:airline_theme='laederon'
+let g:airline_theme='alduin'
 " 
 " }}}
