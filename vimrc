@@ -1,5 +1,5 @@
 
-" Vundle setup {{{
+" Vundle setup {{{1
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -56,11 +56,12 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" }}}
+" 
 
-" vim setup {{{
+" vim setup {{{1
 
-" set folds as marker for vimrc
+" set folds as marker for vimrc {{{2
+"
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
@@ -70,15 +71,20 @@ augroup END
 " au BufWinLeave * mkview
 " au BufWinEnter * silent loadview
 
-" Disable stupid backup and swap files
+" Disable backup and swap files  {{{2
+" 
 set nobackup
 set nowritebackup
 set noswapfile
+
+" Set colorscheme {{{2
 
 " colorscheme desert
 " colorscheme elflord
 " colorscheme nordisk
 colorscheme alduin
+
+" Display settings {{{2
 
 set wildmenu
 set number
@@ -97,7 +103,13 @@ filetype plugin on
 " quickly clear search highlight - hit <esc> after search
 nnoremap <esc> :noh<return><esc>
 "
-" Spelling options - spellcheck only active for .md / markdown file format
+" Allows buffers to be hidden if modified
+set hidden
+
+" Spelling options {{{2
+"
+" spellcheck only active for .md / markdown file format
+"
 set spelllang=en_gb
 set spellfile=/home/james/A_Sync/vim/spell/en.utf-8.add
 hi clear SpellBad
@@ -110,61 +122,61 @@ hi SpellRare cterm=underline
 hi SpellLocal cterm=underline
 autocmd BufRead,BufNewFile *.md set spell
 
-" Allows buffers to be hidden if modified
-set hidden
+" Ngrep {{{2
 
 " search through reference directory
-command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/1_OU/Reference/**/*.md
-"command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
+"command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/1_OU/Reference/**/*.md
+command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
 
+" Leader remaps {{{1
 
-" }}}
-
-" Leader remaps {{{
 let mapleader = ","
 
-" Launch Ngrep ...
+" Launch Ngrep {{{2
+"
 nnoremap <leader>] :Ngrep 
 
-"create/remove extra lines above & below
+"create/remove extra lines above & below {{{2
+"
 nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
 nnoremap <leader>re kddjddk<Esc>
 
-" fast open / reload vimrc
-"nnoremap <leader>ev :tabnew $MYVIMRC<CR>
-"nnoremap <leader>ev :enew $MYVIMRC<CR>
+" fast open / reload vimrc {{{2
+"
 nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
-" enter insert inside quotes/brackets
+" enter insert inside quotes/brackets {{{2
 nnoremap <leader>' i''<Esc>i
 nnoremap <leader>" i""<Esc>i
 nnoremap <leader>{ i{}<Esc>i
 nnoremap <leader>( i()<Esc>i
 nnoremap <leader>[ i[]<Esc>i
 
-" Insert date
-nnoremap <leader>c :read ! date
-
-" tab navigation
+" tab navigation {{{2
+"
 nnoremap <leader>ta :tabfirst<CR>
 nnoremap <leader>tf :tablast<CR>
 nnoremap <leader>td :tabnext<CR>
 nnoremap <leader>ts :tabprev<CR>
 nnoremap <leader>tn :tabnew<space>
 
-" line below / above
+" line below / above {{{2
+"
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>oo O<Esc>j
 
-" insert four spaces
+" insert four spaces {{{2
 nnoremap <leader><space> i<space><space><space><space>
 
-" Mappings to access buffers (don't use "\p" because a
+" Mappings to access buffers {{{2
+"
+" (don't use "\p" because a
 " " delay before pressing "p" would accidentally paste).
 " " \l       : list buffers
 " " \s \d \g : go back/forward/last-used
 " " \1 \2 \3 : go to buffer 1/2/3 etc
+"
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>s :bp<CR>
 nnoremap <Leader>d :bn<CR>
@@ -186,41 +198,22 @@ nnoremap <leader>bn :enew<CR>
 " It's useful to show the buffer number in the status line.
 " set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-" }}}
-
-" Remap arrow keys to nothing {{{
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
-
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
-
-vno <up> <Nop>
-vno <down> <Nop>
-vno <left> <Nop>
-vno <right> <Nop>
-" }}}
-
-" set tab spaces etc {{{
+" set tab spaces etc {{{1
 set tabstop=4
 set shiftwidth=4
 set linebreak
 set breakindent
 " set expandtab
-" }}}
+" 
 
-" Window navigation {{{
+" Window navigation {{{1
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-" }}}
+" 
 
-" load up the nerd tree {{{
+" load up the nerd tree {{{1
 autocmd vimenter * NERDTree
 map <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
@@ -228,16 +221,17 @@ map <Leader>nt <plug>NERDTreeTabsToggle<CR>
 let g:NERDTreeWinPos = "right"
 " " move to the first buffer
 autocmd VimEnter * wincmd p
-" }}}
+" 
 
-" set syntax for markdown {{{
+" set syntax for markdown {{{1
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-" }}}
+" 
 
-" Plugin configuration: {{{
+" Plugin configuration: {{{1
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='laederon'
+" 
 " }}}
