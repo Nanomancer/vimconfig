@@ -122,7 +122,7 @@ endif
 " Editor Settings:
 hi Normal           ctermfg=187     guifg=#dfdfaf     ctermbg=233      guibg=#121212     cterm=NONE     gui=NONE
 hi CursorLine       ctermfg=NONE    guifg=NONE        ctermbg=234      guibg=#1c1c1c     cterm=NONE     gui=NONE
-hi LineNr           ctermfg=236     guifg=#303030     ctermbg=232      guibg=#080808     cterm=NONE     gui=NONE
+hi LineNr           ctermfg=237     guifg=#303030     ctermbg=232      guibg=#080808     cterm=NONE     gui=NONE
 hi CursorLineNR     ctermfg=240     guifg=#585858     ctermbg=232      guibg=#080808     cterm=NONE     gui=NONE
 
 " Number Column:

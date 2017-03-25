@@ -78,13 +78,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Set colorscheme {{{2
-
-" colorscheme desert
-" colorscheme elflord
-" colorscheme nordisk
-colorscheme alduin
-
 " Display settings {{{2
 
 set wildmenu
@@ -92,7 +85,10 @@ set number
 set relativenumber
 set wrap
 set hlsearch
-highlight LineNr ctermfg=DarkGrey
+colorscheme alduin
+"colorscheme elflord
+"highlight LineNr ctermfg=DarkGrey
+"highlight LineNr ctermfg=White
 set laststatus=2 "always show statusline
 set encoding=utf-8 " show unicode glyphs
 set t_Co=265 " Explicitly tell vim that the terminal supports 256 colours
@@ -134,14 +130,20 @@ command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
 
 let mapleader = ","
 
+" Copy & paste commands {{{2
+"
+" Yank entire buffer to system clipboard: ,ya
+nnoremap <leader>ya gg"+yG
+
+" Yank entire buffer to vim clipboard: ,Y
+nnoremap <leader>Y ggyG
+
+" Copy to system clipboard using ctrl+a in Visual mode:
+vnoremap <C-c> "+y
+
 " Launch Ngrep {{{2
 "
-nnoremap <leader>] :Ngrep 
-
-"create/remove extra lines above & below {{{2
-"
-nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
-nnoremap <leader>re kddjddk<Esc>
+nnoremap <leader>] :Ngrep \<
 
 " fast open / reload vimrc {{{2
 "
@@ -149,12 +151,34 @@ nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>eb :edit /home/james/.bashrc<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
-" enter insert inside quotes/brackets {{{2
+" Enter insert inside quotes/brackets {{{2
 nnoremap <leader>' i''<Esc>i
 nnoremap <leader>" i""<Esc>i
 nnoremap <leader>{ i{}<Esc>i
 nnoremap <leader>( i()<Esc>i
 nnoremap <leader>[ i[]<Esc>i
+
+" Insert markdown syntax etc. {{{2
+nnoremap <leader><space> i<space><space><space><space>
+
+" Encase current line in block code (```)
+nnoremap <leader>` <Esc>O<Esc>3i`<esc>jo<Esc>3i`<esc>k0i
+
+" Make heading 1
+nnoremap <leader># 0i#<space>
+
+" Make folding heading 2 / level 1 fold: ,#1
+nnoremap <leader>#1 0i##<space><esc>$a<space><!--1--><esc>0
+
+" Make folding heading 3 / level 2 fold: ,#2
+nnoremap <leader>#2 0i###<space><esc>$a<space><!--2--><esc>0
+
+" Make folding heading 4 / level 3 fold: ,#3
+nnoremap <leader>#3 0i####<space><esc>$a<space><!--3--><esc>0
+
+" read default markdown snippet into buffer
+nnoremap <leader>md :r ! cat $REF/default.md<cr>ggdd:w<cr>:e<cr>zRggf<space>a
+"nnoremap <leader>md:r! cat$REF/default.md<cr>ggdd:w<cr>:e<cr>zRgg:r! echo %:r<cr>
 
 " tab navigation {{{2
 "
@@ -169,8 +193,8 @@ nnoremap <leader>tn :tabnew<space>
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>oo O<Esc>j
 
-" insert four spaces {{{2
-nnoremap <leader><space> i<space><space><space><space>
+nnoremap <leader>er <Esc>O<Esc>jo<Esc>k
+nnoremap <leader>re kddjddk<Esc>
 
 " Mappings to access buffers {{{2
 "
@@ -206,7 +230,7 @@ set tabstop=4
 set shiftwidth=4
 set linebreak
 set breakindent
-" set expandtab
+set expandtab
 " 
 
 " Window navigation {{{1
@@ -230,6 +254,13 @@ autocmd VimEnter * wincmd p
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " 
 
+" set foldmethod as syntax for named filetypes {{{1
+autocmd BufNewFile,BufFilePre,BufRead *.java,*.rb,*.py,*.sh,*.html,*.css set foldmethod=syntax
+" 
+" quick fix items (next/prev): ,n ,p
+nnoremap <leader>p :cprevious<Return>
+nnoremap <leader>n :cnext<Return>
+
 " Airline configuration: {{{1
 " 
 let g:airline#extensions#tabline#enabled = 1
@@ -238,4 +269,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='laederon'
 "let g:airline_theme='alduin'
 " 
+" Java compiling {{{1
+"
+autocmd Filetype java set makeprg=javac\ %
+"nnoremap <leader>jc :set makeprg=javac\ %<CR>:make<CR>:copen<CR>
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+nnoremap <leader>jc :make<Return>:copen<Return>
 " }}}
