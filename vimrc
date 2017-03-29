@@ -40,7 +40,7 @@ Plugin 'dermusikman/sonicpi.vim'
 Plugin 'ervandew/supertab'
 
 " untried comment plugin
-" Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 
@@ -124,7 +124,8 @@ set omnifunc=syntaxcomplete#Complete
 
 " search through reference directory
 "command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/1_OU/Reference/**/*.md
-command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
+command! -nargs=1 Ngrep vimgrep "<args>" ~/A_Sync/1_OU/**/*.md
+"command! -nargs=1 Ngrep vimgrep "<args>" $REF/**/*.md
 
 " Leader remaps {{{1
 
@@ -159,6 +160,8 @@ nnoremap <leader>( i()<Esc>i
 nnoremap <leader>[ i[]<Esc>i
 
 " Insert markdown syntax etc. {{{2
+
+" Insert four spaces
 nnoremap <leader><space> i<space><space><space><space>
 
 " Encase current line in block code (```)
@@ -168,13 +171,13 @@ nnoremap <leader>` <Esc>O<Esc>3i`<esc>jo<Esc>3i`<esc>k0i
 nnoremap <leader># 0i#<space>
 
 " Make folding heading 2 / level 1 fold: ,#1
-nnoremap <leader>#1 0i##<space><esc>$a<space><!--1--><esc>0
+nnoremap <leader>#1 0i##<space><esc>$a<space><!--{{{1--><esc>0
 
 " Make folding heading 3 / level 2 fold: ,#2
-nnoremap <leader>#2 0i###<space><esc>$a<space><!--2--><esc>0
+nnoremap <leader>#2 0i###<space><esc>$a<space><!--{{{2--><esc>0
 
 " Make folding heading 4 / level 3 fold: ,#3
-nnoremap <leader>#3 0i####<space><esc>$a<space><!--3--><esc>0
+nnoremap <leader>#3 0i####<space><esc>$a<space><!--{{{3--><esc>0
 
 " read default markdown snippet into buffer
 nnoremap <leader>md :r ! cat $REF/default.md<cr>ggdd:w<cr>:e<cr>zRggf<space>a
@@ -261,18 +264,24 @@ autocmd BufNewFile,BufFilePre,BufRead *.java,*.rb,*.py,*.sh,*.html,*.css set fol
 nnoremap <leader>p :cprevious<Return>
 nnoremap <leader>n :cnext<Return>
 
-" Airline configuration: {{{1
+" Airline and plugin configuration: {{{1
 " 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='laederon'
-"let g:airline_theme='alduin'
-" 
+" let g:airline_theme='alduin'
+"
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1 
+"
 " Java compiling {{{1
 "
 autocmd Filetype java set makeprg=javac\ %
 "nnoremap <leader>jc :set makeprg=javac\ %<CR>:make<CR>:copen<CR>
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-nnoremap <leader>jc :make<Return>:copen<Return>
+" nnoremap <leader>jc :make<Return>:copen<Return>
+nnoremap <leader>jc :make<Return>:cw<Return>
+" run only works if no packages are used?
+nnoremap <leader>jr :!java -cp %:p:h %:t:r
 " }}}
